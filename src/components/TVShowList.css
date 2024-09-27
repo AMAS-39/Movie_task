@@ -1,0 +1,21 @@
+/* src/components/TVShowList.css */
+
+.tvshow-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  color: black;
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+/* Dark mode support */
+
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .tvshow-list {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for smaller screens */
+  }
+}

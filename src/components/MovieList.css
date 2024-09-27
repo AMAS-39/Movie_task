@@ -1,0 +1,49 @@
+/* src/components/MovieList.css */
+
+/* Grid layout for movie cards */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+  color: black;
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+
+
+
+.movie-list.dark{
+  color: aliceblue;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+  box-shadow: inset;
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+
+/* Header styling for the movie section */
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust for smaller screens */
+  }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 480px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Adjust for very small screens */
+  }
+}
+
+/* Hover effect on movie cards to make it interactive */
+.movie-list__container:hover {
+  box-shadow: 0 8px 16px rgb(0, 0, 0);
+}
+

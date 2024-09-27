@@ -1,0 +1,21 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color); /* Use theme background color */
+  color: var(--text-color); /* Use theme text color */
+}
+h1 {
+  text-align: center;
+  color: var(--title-color); /* Title color based on theme */
+}
+
+a {
+  color: inherit;
+  transition: color 0.3s; /* Smooth transition for link color */
+}
+
+/* Add hover effect for links */
+a:hover {
+  color: var(--highlight-color); /* Highlight color on hover */
+}

@@ -1,0 +1,52 @@
+/* src/pages/TVShowsPage.css */
+
+/* Main container for the TV shows page */
+.tvshows-page {
+    padding: 40px;
+    background-color:aliceblue; /* Use theme color */
+    color: black; /* Use theme color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    min-height: 100vh; /* Ensure full height for the page */
+    flex-direction: column;
+    align-items: center;
+}
+.tvshows-page.dark{
+    background-color: rgba(65, 89, 88, 0.31);
+}
+
+/* Title styling */
+.tvshows-page h1 {
+    font-size: 42px; /* Adjust size for main title */
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: var(--title-color); /* Use theme color */
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+/* Adding a fancy underline effect to the title */
+.tvshows-page h1::after {
+    content: '';
+    display: block;
+    width: 80px; /* Adjust width of underline */
+    height: 4px; /* Adjust height of underline */
+    background-color: var(--highlight-color); /* Use highlight color */
+    margin: 0 auto; /* Center underline */
+    margin-top: 10px; /* Space above underline */
+    border-radius: 2px; /* Round the edges of underline */
+}
+
+/* Responsive Design for smaller devices */
+@media (max-width: 768px) {
+    .tvshows-page {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .tvshows-page h1 {
+        font-size: 32px; /* Adjust font size for smaller screens */
+    }
+}
