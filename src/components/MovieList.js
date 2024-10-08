@@ -1,13 +1,24 @@
 // src/components/MovieList.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
-import { moviesData } from '../api/mockData';
+import { fetchTrendingMovies } from '../api/tmdbApi'; // Fetch movies from API
 import "./MovieList.css";
 
 const MovieList = ({ theme }) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const getTrendingMovies = async () => {
+      const trendingMovies = await fetchTrendingMovies();
+      setMovies(trendingMovies); // Set the state with API data
+    };
+
+    getTrendingMovies();
+  }, []);
+
   return (
     <div className={`movie-list ${theme}`}>
-      {moviesData.map(movie => (
+      {movies.map(movie => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>

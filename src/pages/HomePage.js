@@ -3,8 +3,6 @@ import React from 'react';
 import MovieList from '../components/MovieList';
 import './HomePage.css';
 
-
-
 const HomePage = ({ theme }) => {
   return (
     <div className={`homepage ${theme}`}> {/* Ensure theme class is applied here */}

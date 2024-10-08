@@ -7,10 +7,10 @@ const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
       <Link to={`/movies/${movie.id}`}>
-        <img src={movie.posterUrl} alt={movie.title} />
+        <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
         <div className="movie-card__info">
           <h3>{movie.title}</h3>
-          <p>⭐ {movie.rating}</p>
+          <p>⭐ {movie.vote_average}</p>
         </div>
       </Link>
     </div>

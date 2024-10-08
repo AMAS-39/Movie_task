@@ -1,12 +1,22 @@
 // src/pages/MovieDetailPage.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { moviesData } from '../api/mockData';
+import { fetchTrendingMovies } from '../api/tmdbApi'; // Fetch from TMDb API
 import './MovieDetailPage.css';
 
-const MovieDetailPage = ({ theme }) => { // Accept theme as prop
+const MovieDetailPage = ({ theme }) => { 
   const { movieId } = useParams(); // Get the movie ID from the URL
-  const movie = moviesData.find((m) => m.id === parseInt(movieId)); // Find the movie by ID
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    const getMovieDetails = async () => {
+      const movies = await fetchTrendingMovies();
+      const movieData = movies.find((m) => m.id === parseInt(movieId));
+      setMovie(movieData);
+    };
+
+    getMovieDetails();
+  }, [movieId]);
 
   if (!movie) {
     return <h1 className="movie-not-found">Movie not found!</h1>;
@@ -15,13 +25,13 @@ const MovieDetailPage = ({ theme }) => { // Accept theme as prop
   return (
     <div className={`movie-detail-page ${theme}`}> {/* Apply theme class */}
       <div className="movie-detail__poster">
-        <img src={movie.posterUrl} alt={movie.title} />
+        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
       </div>
       <div className="movie-detail__info">
         <h1>{movie.title}</h1>
-        <p className="movie-rating">⭐ {movie.rating}</p>
-        <p className="movie-release">Release Date: {movie.releaseDate || 'Unknown'}</p>
-        <p className="movie-description">{movie.description || 'No description available.'}</p>
+        <p className="movie-rating">⭐ {movie.vote_average}</p>
+        <p className="movie-release">Release Date: {movie.release_date || 'Unknown'}</p>
+        <p className="movie-description">{movie.overview || 'No description available.'}</p>
       </div>
     </div>
   );

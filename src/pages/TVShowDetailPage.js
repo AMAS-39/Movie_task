@@ -1,12 +1,22 @@
 // src/pages/TVShowDetailPage.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { tvShowsData } from '../api/mockData';
+import { fetchPopularTVShows } from '../api/tmdbApi'; // Fetch from TMDb API
 import './TVShowDetailPage.css';
 
-const TVShowDetailPage = ({ theme }) => { // Accept theme as prop
+const TVShowDetailPage = ({ theme }) => { 
   const { showId } = useParams(); // Get the TV show ID from the URL
-  const show = tvShowsData.find((s) => s.id === parseInt(showId));
+  const [show, setShow] = useState(null);
+
+  useEffect(() => {
+    const getShowDetails = async () => {
+      const shows = await fetchPopularTVShows();
+      const showData = shows.find((s) => s.id === parseInt(showId));
+      setShow(showData);
+    };
+
+    getShowDetails();
+  }, [showId]);
 
   if (!show) {
     return <h1 className="tvshow-not-found">TV Show not found!</h1>;
@@ -15,13 +25,13 @@ const TVShowDetailPage = ({ theme }) => { // Accept theme as prop
   return (
     <div className={`tvshow-detail-page ${theme}`}> {/* Apply theme class */}
       <div className="tvshow-detail__poster">
-        <img src={show.posterUrl} alt={show.title} />
+        <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
       </div>
       <div className="tvshow-detail__info">
-        <h1>{show.title}</h1>
-        <p className="tvshow-rating">⭐ {show.rating}</p>
-        <p className="tvshow-release">Release Date: {show.releaseDate}</p>
-        <p className="tvshow-description">{show.description}</p>
+        <h1>{show.name}</h1>
+        <p className="tvshow-rating">⭐ {show.vote_average}</p>
+        <p className="tvshow-release">Release Date: {show.first_air_date}</p>
+        <p className="tvshow-description">{show.overview}</p>
       </div>
     </div>
   );

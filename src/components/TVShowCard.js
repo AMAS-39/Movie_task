@@ -3,14 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import './TVShowCard.css';
 
-const TVShowCard = ({ show, theme }) => { // Accept theme as prop if needed
+const TVShowCard = ({ show }) => { 
   return (
-    <div className={`tvshow-card ${theme}`}> {/* Add theme class */}
+    <div className="tvshow-card">
       <Link to={`/tv-shows/${show.id}`}>
-        <img src={show.posterUrl} alt={show.title} />
+        <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
         <div className="tvshow-card__info">
-          <h3>{show.title}</h3>
-          <p>⭐ {show.rating}</p>
+          <h3>{show.name}</h3>
+          <p>⭐ {show.vote_average}</p>
         </div>
       </Link>
     </div>
