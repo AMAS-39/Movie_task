@@ -3,15 +3,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ toggleTheme, theme }) => {
-  const [menuOpen, setMenuOpen] = useState(false); // State to manage the hamburger menu
+const Header = ({ toggleTheme, theme, onSearch }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value); // Call the onSearch function passed as a prop
+  };
+
   return (
-    <header className={`header ${theme}`}> {/* Add theme class */}
+    <header className={`header ${theme}`}>
       <div className="header__container">
         <div className="header__logo">
           <Link to="/">
@@ -19,7 +25,12 @@ const Header = ({ toggleTheme, theme }) => {
           </Link>
         </div>
         <div className="header__search">
-          <input type="text" placeholder="Search for movies, TV shows..." />
+          <input
+            type="text"
+            placeholder="Search for movies, TV shows..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
         </div>
         <nav className={`header__nav ${menuOpen ? 'open' : ''}`}>
           <ul>

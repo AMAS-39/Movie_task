@@ -1,21 +1,18 @@
-// src/pages/HomePage.js
 import React from 'react';
 import MovieList from '../components/MovieList';
 import './HomePage.css';
 
-const HomePage = ({ theme }) => {
+const HomePage = ({ theme, searchQuery }) => {
   return (
-    <div className={`homepage ${theme}`}> {/* Ensure theme class is applied here */}
-      {/* Hero Section with Background Image */}
+    <div className={`homepage ${theme}`}>
       <div className="homepage__hero">
         <div className="homepage__overlay">
           <h2>“Cinema is a mirror by which we often see ourselves.”</h2>
         </div>
       </div>
-
-      {/* Trending Movies Section */}
       <h1 className="homepage__title">Trending Movies</h1>
-      <MovieList theme={theme} /> {/* Pass theme to MovieList */}
+      {/* Limit the number of movies to display on the homepage */}
+      <MovieList theme={theme} searchQuery={searchQuery} limit={6} /> {/* Limit to 6 movies */}
     </div>
   );
 };
